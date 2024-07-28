@@ -30,7 +30,7 @@ def is_match(ch1, ch2):
 
 def is_balanced(s):
     stack = Stack()
-    for ch in s:
+"""    for ch in s:
         if ch=='(' or ch=='{' or ch == '[':
             stack.push(ch)
         if ch==')' or ch=='}' or ch == ']':
@@ -39,7 +39,22 @@ def is_balanced(s):
             if not is_match(ch,stack.pop()):
                 return False
 
-    return stack.size()==0
+    return stack.size()==0"""
+
+    for ch in s:
+        if ch in ['(','[','{']:
+            stack.push(ch)
+        if ch in [')',']','}']:
+            if stack.size()!=0:
+                if is_match(ch,stack.peek()):
+                    stack.pop()
+            else:
+                stack.push(ch)
+    
+    if stack.is_empty():
+        return True
+    else:
+        return False
 
 
 if __name__ == '__main__':
